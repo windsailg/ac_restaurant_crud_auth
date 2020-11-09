@@ -1,0 +1,21 @@
+<div class="mt-5 mb-5">
+  <div class="col-md-4 m-auto mb-5">
+    <div class="card card-body">
+      <h1 class="text-center mt-3">Login</h1>
+      <form action="/users/login" method="POST">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password">
+        </div>
+        <button type="submit" class="btn btn-warning btn-block">Login</button>
+      </form>
+      <p class="lead mt-4">
+        沒有帳號嗎? 註冊一個！ <a href="/users/register">Register</a>
+      </p>
+    </div>
+  </div>
+</div>

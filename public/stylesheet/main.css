@@ -1,0 +1,144 @@
+body{
+  position: relative;
+}
+header {
+  overflow: hidden;
+}
+.navbar .navbar-brand {
+  color: #4592af;
+}
+.navbar .navbar-brand:hover {
+  color: #226089;
+}
+.banner {
+  position: relative;
+  z-index: -1;
+  margin: -5px;
+  height: 360px;
+  background: #dddddd center center
+    url("https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/5720/restaurants-list-cover.jpg");
+  background-size: cover;
+  background-size: fixed;
+  background-position: 80%;
+  filter: blur(3px);
+}
+.search__form{
+  display: flex;
+  justify-content:space-between;
+}
+.search-bar .search-bar-outer {
+  margin: 0 auto;
+  max-width: 920px;
+  background-color: #0000008c;
+  border-radius: 8px;
+  padding: 20px 30px;
+  border: 0;
+  margin-top: -60px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.233);
+}
+
+.search-bar .search-bar-inner h4 {
+  color: #ffffff;
+  font-weight: bold;
+}
+.form-control::placeholder {
+  color: #aaaaaa;
+  font-size: 0.8rem;
+}
+.btn-major {
+  background-color: #9b4b4b;
+  color: white;
+}
+
+.form-control:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+}
+
+.card {
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  height: 180px;
+}
+
+.card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.restaurant-category {
+  color: #666666;
+  font-size: 0.8rem;
+}
+
+.restaurant-show-title {
+  position: relative;
+  top: -100px;
+  color: white;
+  text-align: center;
+  font-size: 3rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 992px) {
+  .card img {
+    height: 115px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .restaurant-show-title {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .card img {
+    height: auto;
+  }
+}
+
+
+.btn-style{
+    outline-color:#9b4b4b ;
+}
+.btn-style:hover{
+    background-color:#9b4b4b ;
+}
+.input-group-text{
+  background-color: #fff0eb;
+}
+.rating_number{
+  min-width: 50px;
+}
+.custom-range{
+  border-color: transparent;
+  outline: 1px solid transparent;
+  
+}
+
+.form-control:focus{
+  color: #495057;
+  background-color: #fff;
+  border-color: #ffebe6;
+  outline: 0;
+  box-shadow: 0 0 .8rem #ffd7cd;
+}
+.custom-range:focus{
+  border-color: transparent;
+  outline: 1px solid transparent;
+  box-shadow: 0 0 .8rem transparent;
+}
+.form-control:disabled{
+  background-color: #fff9f8;
+}
+.restaurant-show-title{
+  min-height: 58px;
+  text-shadow: 0 0 25px #0000009f;
+}
+.card-title{
+  min-height: 20px;
+}
