@@ -3,7 +3,7 @@ const router = express.Router()
 
 const restaurantModel = require('../../models/restaurant')
 
-// 搜尋篩選路由
+// search
 router.get('/', (req, res) => {
   const userId = req.user._id
   const queryArr = req.query
@@ -68,12 +68,12 @@ router.get('/', (req, res) => {
     .catch(error => console.error(error))
 })
 
-// 新增頁面路由
+// new
 router.get('/new', (req, res) => {
   return res.render('new')
 })
 
-// 新增頁面送出路由
+// post new
 router.post('/', (req, res) => {
   const userId = req.user._id
   const { name, nameEN, category, rating, area, location, googleMap, phone, description, image } = req.body
@@ -94,7 +94,7 @@ router.post('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// 詳細頁面路由
+// detail
 router.get('/:restaurant_id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.restaurant_id
@@ -104,7 +104,7 @@ router.get('/:restaurant_id', (req, res) => {
     .catch(error => console.error(error))
 })
 
-// 編輯頁面路由
+// edit
 router.get('/:restaurant_id/edit', (req, res) => {
   const userId = req.user._id
   const _id = req.params.restaurant_id
@@ -114,7 +114,7 @@ router.get('/:restaurant_id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-// 編輯頁面送出路由
+// post edit
 router.put('/:restaurant_id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.restaurant_id
@@ -140,7 +140,7 @@ router.put('/:restaurant_id', (req, res) => {
     .catch(error => console.error(error))
 })
 
-// 刪除物件送出路由
+// delete
 router.delete('/:restaurant_id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.restaurant_id
