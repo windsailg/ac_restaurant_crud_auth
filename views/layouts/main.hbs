@@ -20,9 +20,17 @@
     <div class="container flex-justify-between">
       <a class="navbar-brand" href="/">
         <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png" width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
-        我的餐廳口袋名單
+        {{#if isAuthenticated }}{{ user.name }} {{else}}我{{/if}}的餐廳口袋名單
       </a>
-      <a type="button" href="/restaurant/new" class="btn btn-outline-danger"><i class="far fa-plus-square"></i> 新增餐廳</a>
+      {{#if isAuthenticated}}
+        <a href="/users/logout" class="btn btn-warning">
+          <i class="fas fa-sign-out-alt"></i> 登出
+        </a>
+      {{else}}
+        <a href="/users/login" class="user__login">
+          <i class="far fa-user-circle"></i>
+        </a>
+      {{/if}}
     </div>
   </nav>
 
@@ -30,6 +38,7 @@
 </header>
     {{{ body }}}
 
+    
 
 
   <div class="modal fade" id="ModalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

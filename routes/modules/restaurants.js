@@ -1,15 +1,16 @@
 const express = require('express')
 const router = express.Router()
 
-const restaurants = require('../../models/restaurant')
+const restaurantModel = require('../../models/restaurant')
 
 // 搜尋篩選路由
 router.get('/', (req, res) => {
+  const userId = req.user._id
   const queryArr = req.query
   if (!queryArr.sortRule) queryArr.sortRule = 'asc'
   if (queryArr.clear) queryArr.keyword = ''
   const word = queryArr.keyword.toLowerCase().trim()
-  restaurants.find()
+  restaurantModel.find({ userId })
     .lean()
     .sort({ name: queryArr.sortRule })
     .then(restaurant => {
@@ -74,19 +75,20 @@ router.get('/new', (req, res) => {
 
 // 新增頁面送出路由
 router.post('/', (req, res) => {
-
-  const { name, name_en, category, rating, area, location, google_map, phone, description, image } = req.body
-  return restaurants.create({
+  const userId = req.user._id
+  const { name, nameEN, category, rating, area, location, googleMap, phone, description, image } = req.body
+  return restaurantModel.create({
     name: name,
-    name_en: name_en,
+    name_en: nameEN,
     category: category,
     rating: rating,
     area: area,
     location: location,
-    google_map: google_map,
+    google_map: googleMap,
     phone: phone,
     description: description,
-    image: image
+    image: image,
+    userId
   })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -94,8 +96,9 @@ router.post('/', (req, res) => {
 
 // 詳細頁面路由
 router.get('/:restaurant_id', (req, res) => {
-  const id = req.params.restaurant_id
-  return restaurants.findById(id)
+  const userId = req.user._id
+  const _id = req.params.restaurant_id
+  return restaurantModel.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.error(error))
@@ -103,8 +106,9 @@ router.get('/:restaurant_id', (req, res) => {
 
 // 編輯頁面路由
 router.get('/:restaurant_id/edit', (req, res) => {
-  const id = req.params.restaurant_id
-  return restaurants.findById(id)
+  const userId = req.user._id
+  const _id = req.params.restaurant_id
+  return restaurantModel.findOne({ _id, userId })
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
@@ -112,33 +116,35 @@ router.get('/:restaurant_id/edit', (req, res) => {
 
 // 編輯頁面送出路由
 router.put('/:restaurant_id', (req, res) => {
-  const id = req.params.restaurant_id
-  const { name, name_en, category, rating, area, location, google_map, phone, description, image } = req.body
+  const userId = req.user._id
+  const _id = req.params.restaurant_id
+  const { name, nameEN, category, rating, area, location, googleMap, phone, description, image } = req.body
   console.log(req.body)
-  return restaurants.findById(id)
+  return restaurantModel.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = name
-      restaurant.name_en = name_en
+      restaurant.name_en = nameEN
       restaurant.category = category
       restaurant.rating = rating
       restaurant.area = area
       restaurant.location = location
-      restaurant.google_map = google_map
+      restaurant.google_map = googleMap
       restaurant.phone = phone
       restaurant.description = description
       restaurant.image = image
       return restaurant.save()
     })
     .then(() => {
-      return res.redirect(`/restaurant/${id}`)
+      return res.redirect(`/restaurant/${_id}`)
     })
     .catch(error => console.error(error))
 })
 
 // 刪除物件送出路由
 router.delete('/:restaurant_id', (req, res) => {
-  const id = req.params.restaurant_id
-  return restaurants.findById(id)
+  const userId = req.user._id
+  const _id = req.params.restaurant_id
+  return restaurantModel.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

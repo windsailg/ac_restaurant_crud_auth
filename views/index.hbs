@@ -1,4 +1,5 @@
 <!-- search bar -->
+{{> message}}
 <div class="container search-bar">
   <div class="search-bar-outer">
     <div class="search-bar-inner">
@@ -6,8 +7,8 @@
 
       <form action="/search" class="search__form">
        
-        <div class="input-group shadow ">
-          <input type="text" name="keyword" class="form-control" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
+        <div class="input-group shadow mb-2 ">
+          <input type="text" name="keyword" class="form-control fix__height" placeholder="輸入餐廳、分類" aria-label="Restaurant Name..."
             value="{{ keywords }}" aria-describedby="search-button">
             <div class="input-group-append">
               <button  type="submit" class="btn btn-major" id="search-button"><i class="fas fa-search"></i></button>
@@ -16,19 +17,19 @@
 
         <div class="input-group ">
 
-          <div class="dropdown ml-3 shadow sorter">
+          <div class="dropdown ml-3 shadow sorter mb-2">
             <button class="btn btn-warning dropdown-toggle sorter__text" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               排序
             </button>
 
-            <div type="submit" class="dropdown-menu" aria-labelledby="dropdownMenu">
+            <div type="submit" class="dropdown-menu mb-2" aria-labelledby="dropdownMenu">
               <button name="sortRule" value="asc" class="dropdown-item" >A~Z</button>
               <button name="sortRule" value="desc" class="dropdown-item" >Z~A</button>
             </div>
 
           </div>
 
-          <div class="dropdown ml-3 shadow sorter">
+          <div class="dropdown ml-3 shadow sorter mb-2">
             <button class="btn btn-warning dropdown-toggle sorter__text" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{#if queryArr.filterCategory}}
                 {{queryArr.filterCategory}}
@@ -45,7 +46,7 @@
             </div>
           </div>
 
-          <div class="dropdown ml-3 shadow sorter">
+          <div class="dropdown ml-3 shadow sorter mb-2">
             <button class="btn btn-warning dropdown-toggle sorter__text" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{#if queryArr.filterArea}}
                 {{queryArr.filterArea}}
@@ -53,7 +54,8 @@
                 地區
               {{/if}}
             </button>
-            <div type="submit" class="dropdown-menu" aria-labelledby="dropdownMenu3">
+
+            <div type="submit" class="dropdown-menu mb-2" aria-labelledby="dropdownMenu3">
               <button name="filterArea" value="" class="dropdown-item" >選擇餐廳地區</button>
               <div class="dropdown-divider"></div>
               {{#each areas}}
@@ -63,7 +65,7 @@
           </div> 
 
           
-          <button type="submit" name="clear" value="true" class="btn ml-3 btn-dark">重置</button>
+          <button type="submit" name="clear" value="true" class="btn ml-3 btn-dark mb-2">重置</button>
         </div>
 
       </form>
@@ -74,13 +76,20 @@
 
 <div class="container mt-5">
   <div class="row">
+    
     <div class="col-md-10 col-12 mx-auto">
+
+      <div class="row">
+        <div class="col-sm-4 mt-2 mb-4">
+          <a type="button" href="/restaurant/new" class="btn btn-outline-danger"><i class="far fa-plus-square"></i> 新增餐廳</a>
+        </div>
+      </div>
+
 
       <div class="row ">
       {{#each restaurant}}
           <div class="col-sm-4">
 
-          
             <div class="card  mb-4 " data-aos="fade-up">
               <a href="./restaurant/{{this._id}}" class="text-secondary">
               <img class="card-img-top" src="{{this.image}}" alt="{{this.name}}">

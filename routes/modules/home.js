@@ -1,13 +1,14 @@
 const express = require('express')
 const router = express.Router()
 
-const restaurants = require('../../models/restaurant')
+const restaurantModel = require('../../models/restaurant')
 
 router.get('/', (req, res) => {
-  restaurants.find()
+  const userId = req.user._id
+  restaurantModel.find({ userId })
     .lean()
     .sort({ name: 'asc' })
-    .then(restaurant =>{
+    .then(restaurant => {
       const categoryArr = []
       const areaArr = []
       restaurant.forEach(item => {
