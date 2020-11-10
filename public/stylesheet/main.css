@@ -154,3 +154,6 @@ header {
 .card-title{
   min-height: 20px;
 }
+.max__width__500{
+  max-width: 550px;
+}
