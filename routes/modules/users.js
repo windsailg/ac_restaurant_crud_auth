@@ -8,7 +8,13 @@ router.get('/login', (req, res) => {
   res.render('login')
 })
 
-router.post('/login', passport.authenticate('local', {
+router.post('/login', (req, res, next) => {
+  const { email, password } = req.body
+  if (!email || !password) {
+    return res.render('login', { warning_msg: '請確認必填欄位的資訊是否填寫' })
+  }
+  next()
+}, passport.authenticate('local', {
   successFlash: true,
   successRedirect: '/',
   failureRedirect: '/users/login'
