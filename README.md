@@ -26,8 +26,7 @@ password: 12345678
 - 關鍵字篩選功能，可判斷現有餐廳資訊的地區及類型，自動產生篩選條件進行篩選
 - 如已輸入搜尋關鍵字，則可從關鍵字搜尋結果中做篩選
 - 清除所有搜尋操作按鈕(重置)
-- 首頁資訊卡新增檢視、修改、刪除等操作優化
-- 所有CRUD操作加入提示彈出提醒視窗
+- 餐廳資訊卡的新增、修改、刪除操作體驗優化(加入操作提醒視窗)
 
 
 ### 3.0新增功能
@@ -54,12 +53,12 @@ password: 12345678
 - popper: 1.14.6
 
 - passport: 0.4.1
-- passport-facebook": 3.0.0
+- passport-facebook: 3.0.0
 - passport-local: 1.0.0
-- express-session": ^1.17.1
-- dotenv: ^8.2.0
-- bcryptjs: ^2.4.3
-- connect-flash": 0.1.1
+- express-session: 1.17.1
+- dotenv: 8.2.0
+- bcryptjs: 2.4.3
+- connect-flash: 0.1.1
 
 
 ## 安裝
