@@ -119,7 +119,6 @@ router.put('/:restaurant_id', (req, res) => {
   const userId = req.user._id
   const _id = req.params.restaurant_id
   const { name, nameEN, category, rating, area, location, googleMap, phone, description, image } = req.body
-  console.log(req.body)
   return restaurantModel.findOne({ _id, userId })
     .then(restaurant => {
       restaurant.name = name

@@ -13,6 +13,7 @@ router.post('/login', (req, res, next) => {
   if (!email || !password) {
     return res.render('login', { warning_msg: '請確認必填欄位的資訊是否填寫' })
   }
+  req.flash('success_msg', '已成功登入')
   next()
 }, passport.authenticate('local', {
   successFlash: true,
@@ -27,8 +28,8 @@ router.get('/register', (req, res) => {
 router.post('/register', (req, res) => {
   const { name, email, password, confirmPassword } = req.body
   const errors = []
-  if (!name || !email || !password || !confirmPassword) {
-    errors.push({ message: '所有欄位為必填，請檢查欄位' })
+  if (!email || !password || !confirmPassword) {
+    errors.push({ message: '信箱及密碼為必填' })
   }
   if (password !== confirmPassword) {
     errors.push({ message: '密碼與確認密碼不相符！' })
@@ -61,7 +62,10 @@ router.post('/register', (req, res) => {
         email,
         password: hash
       }))
-      .then(() => res.redirect('/'))
+      .then(() => {
+        req.flash('success_msg', '您已成功註冊')
+        return res.redirect('/users/login')
+      })
       .catch(err => console.log(err))
   })
 })

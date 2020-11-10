@@ -6,7 +6,10 @@ router.get('/facebook', passport.authenticate('facebook', {
   scope: ['email', 'public_profile']
 }))
 
-router.get('/facebook/callback', passport.authenticate('facebook', {
+router.get('/facebook/callback', (req, res, next) => {
+  req.flash('success_msg', '已成功登入')
+  next()
+}, passport.authenticate('facebook', {
   successRedirect: '/',
   failureRedirect: 'users/login'
 }))
