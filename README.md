@@ -1,24 +1,23 @@
 # 我的餐廳口袋名單 v3.0
 
-本清單提供餐廳的類型搜尋、查看餐廳照片以及地理位置等資訊
-並可以任意新增、修改、刪除，或重新輸入預設餐廳資料
-使用上述功能需先建立帳號並登入
-或使用預設的使用者帳號登入
+本清單提供餐廳的類型搜尋、查看餐廳照片以及地理位置等資訊，
+並可以任意新增、修改、刪除，或重新輸入預設餐廳資料，使用上述功能需先建立帳號並登入，或使用預設的使用者帳號登入。
 
 第一位使用者：
 email: user1@example.com
+
 password: 12345678
+
 
 第二位使用者：
 email: user2@example.com
+
 password: 12345678
 
 
-
 修正功能：
-- 不須使用者名稱也可以登入
-- 登入及註冊體驗優化
-
+- 不須使用者名稱也可以註冊
+- 登入及註冊體驗優化(加入登入及註冊成功時提示訊息)
 
 
 ### 3.0 新增功能
@@ -49,7 +48,7 @@ password: 12345678
 - Express-Handlebars: 5.1.0
 - nodemon: 2.0.4
 - body-parser: 6.12.0
-- method-override: 3.0,
+- method-override: 3.0
 
 - jquery: 3.3.1
 - bootstrap: 4.2.1
@@ -99,10 +98,14 @@ npm run dev  //啟動程式
 ```
 
 5.終端機顯示以下資訊代表啟動成功
+
 Express is running on http://localhost:3000
 mongoDB connected
 
-伺服器已經成功連線並運作於 http://localhost:3000
+
+伺服器已經成功連線並運作於 
+
+http://localhost:3000
 
 
 
