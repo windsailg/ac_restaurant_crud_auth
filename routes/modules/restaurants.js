@@ -10,10 +10,14 @@ router.get('/', (req, res) => {
   if (!queryArr.sortRule) queryArr.sortRule = 'asc'
   if (queryArr.clear) queryArr.keyword = ''
   const word = queryArr.keyword.toLowerCase().trim()
+
+  console.log(queryArr)
+  console.log(word)
   restaurantModel.find({ userId })
     .lean()
     .sort({ name: queryArr.sortRule })
     .then(restaurant => {
+      // filter list
       const categoryArr = []
       const areaArr = []
       restaurant.forEach(item => {
@@ -27,6 +31,7 @@ router.get('/', (req, res) => {
         return thisArr.indexOf(ele) === index
       })
 
+      // filter result
       const searchedRestaurant = []
       restaurant.forEach(item => {
         if (item.name.toLowerCase().includes(word) || item.category.toLowerCase().includes(word)) {

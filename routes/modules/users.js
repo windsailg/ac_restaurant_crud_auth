@@ -10,16 +10,22 @@ router.get('/login', (req, res) => {
 
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body
-  if (!email || !password) {
-    return res.render('login', { warning_msg: '請確認必填欄位的資訊是否填寫' })
-  }
-  req.flash('success_msg', '已成功登入')
-  next()
-}, passport.authenticate('local', {
-  successFlash: true,
-  successRedirect: '/',
-  failureRedirect: '/users/login'
-}))
+  passport.authenticate('local', (err, user, info) => {
+    if (err) {
+      return next(err)
+    }
+    if (!email || !password) {
+      return res.render('login', { warning_msg: '請確認必填欄位的資訊是否填寫' })
+    }
+    if (!user) {
+      return res.render('login', { warning_msg: '請確認填入的資料是否正確' })
+    }
+    req.logIn(user, () => {
+      req.flash('warning_msg', '已成功登入')
+      return res.redirect('/')
+    })
+  })(req, res, next)
+})
 
 router.get('/register', (req, res) => {
   res.render('register')
